@@ -1,0 +1,20 @@
+service: test-test
+frameworkVersion: "3"
+
+provider:
+  name: aws
+  runtime: nodejs22.x
+
+plugins:
+  - serverless-offline
+
+functions:
+  app:
+    handler: handler.app
+    events:
+      - httpApi:
+          path: /{proxy+}
+          method: any
+      - httpApi:
+          path: /
+          method: any
